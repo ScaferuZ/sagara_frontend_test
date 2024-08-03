@@ -25,76 +25,43 @@ const handleDelete = (id: number) => {
   // Implement your delete logic here
 }
 
+const createSortableHeader = (label: string) => {
+  return ({ column }: { column: any }) => (
+    <Button
+      variant="ghost"
+      onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      className="hover:bg-transparent -ml-4"
+    >
+      <span className="font-semibold">{label}</span>
+      <ArrowsUpDownIcon className="ml-2 h-4 w-4" />
+    </Button>
+  )
+}
+
 export const columns: ColumnDef<Student>[] = [
   {
     accessorKey: "name",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Name
-          <ArrowsUpDownIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    header: createSortableHeader("Name"),
+    cell: ({ row }) => <div className="text-left pl-0">{row.getValue("name")}</div>,
   },
   {
     accessorKey: "email",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Email
-          <ArrowsUpDownIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    header: createSortableHeader("Email"),
+    cell: ({ row }) => <div className="text-left pl-0">{row.getValue("email")}</div>,
   },
   {
     accessorKey: "phoneNumber",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Phone Number
-          <ArrowsUpDownIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    header: createSortableHeader("Phone Number"),
+    cell: ({ row }) => <div className="text-left pl-0">{row.getValue("phoneNumber")}</div>,
   },
   {
     accessorKey: "instance",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Phone Number
-          <ArrowsUpDownIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    header: createSortableHeader("Instance"),
+    cell: ({ row }) => <div className="text-left pl-0">{row.getValue("instance")}</div>,
   },
   {
     accessorKey: "createdAt",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Created At
-          <ArrowsUpDownIcon className="ml-2 h-4 w-4" />
-        </Button>
-      )
-    },
+    header: createSortableHeader("Created At"),
     cell: ({ row }) => {
       const createdAt = row.getValue("createdAt") as Date
       const formatted = createdAt.toLocaleDateString('en-US', {
@@ -103,14 +70,14 @@ export const columns: ColumnDef<Student>[] = [
         month: 'long',
         day: 'numeric'
       })
-      return <div className="text-right font-medium">{formatted}</div>
+      return <div className="text-left font-medium">{formatted}</div>
     }
   },
   {
     id: "actions",
+    header: () => <div className="text-right">Actions</div>,
     cell: ({ row }) => {
       const student = row.original
-
       return (
         <div className="flex justify-end space-x-2">
           <Button variant="ghost" size="icon" onClick={() => handleEdit(student)}>
