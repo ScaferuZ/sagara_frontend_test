@@ -27,16 +27,16 @@ const cards = [
 
 const Dashboard = () => {
   return (
-    <div>
+    <>
       <DateRangeSelector />
-      <div className="flex flex-row justify-between space-x-16 my-11">
+      <div className="flex flex-col space-y-5 md:flex-row md:justify-between md:space-x-16 md:space-y-0 my-11">
         {cards.map((card, index) => (
           <InfoCard key={index} {...card} />
         ))
         }
       </div>
       <StudentChart />
-    </div>
+    </>
   )
 }
 
