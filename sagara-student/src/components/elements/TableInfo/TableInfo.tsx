@@ -14,8 +14,8 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Checkbox } from "@/components/ui/checkbox";
-import { PlusIcon, AdjustmentsHorizontalIcon, CogIcon } from "@heroicons/react/24/outline";
+import { AdjustmentsHorizontalIcon, CogIcon } from "@heroicons/react/24/outline";
+import StudentRegisterForm from '@/components/forms/StudentRegisterForm/StudentRegisterForm';
 
 interface TableInfoProps {
   searchInput?: React.ReactNode
@@ -64,10 +64,8 @@ const TableInfo: React.FC<TableInfoProps> = ({ searchInput, dropdownMenu }) => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <Button className="bg-red text-white-background hover:bg-rose-900 ">
-          <PlusIcon className="h-4 w-4 mr-1" />
-          Add User
-        </Button>
+        {/* <AddUserButton /> */}
+        <StudentRegisterForm />
       </div>
 
       <div className="flex items-center space-x-2">
