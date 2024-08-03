@@ -1,4 +1,6 @@
+import DateRangeSelector from "@/components/elements/DateRangeSelector"
 import InfoCard from "@/components/elements/InfoCard"
+import StudentChart from "@/components/elements/StudentChart"
 import { PresentationChartLineIcon, UsersIcon } from "@heroicons/react/24/solid"
 import { CubeIcon } from "@radix-ui/react-icons"
 
@@ -26,12 +28,14 @@ const cards = [
 const Dashboard = () => {
   return (
     <div>
-      <div className="flex flex-row justify-between space-x-16">
+      <DateRangeSelector />
+      <div className="flex flex-row justify-between space-x-16 my-11">
         {cards.map((card, index) => (
           <InfoCard key={index} {...card} />
         ))
         }
       </div>
+      <StudentChart />
     </div>
   )
 }

@@ -41,3 +41,13 @@
 .read-the-docs {
   color: #888;
 }
+
+.popover-content {
+  background-color: hsl(var(--white-background));
+  color: hsl(var(--foreground));
+}
+
+.select-content {
+  background-color: hsl(var(--white-background));
+  color: hsl(var(--foreground));
+}
