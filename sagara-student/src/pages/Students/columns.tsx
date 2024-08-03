@@ -6,12 +6,12 @@ import { TrashIcon, PencilIcon, ArrowsUpDownIcon } from "@heroicons/react/20/sol
 
 
 export type Student = {
-  id: number
+  id?: number
   name: string
   email: string
   phoneNumber: number
   instance: string
-  createdAt: Date
+  createdAt?: Date
 }
 
 // These functions should be defined in your component or passed as props

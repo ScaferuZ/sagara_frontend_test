@@ -20,9 +20,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Modal } from "@/components/ui/modal"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"
+import { Student } from "@/pages/Students/columns"
 
 interface StudentRegisterFormProps {
-  onSuccess?: () => void;
+  onSuccess: (student: Student) => void;
 }
 
 function StudentRegisterForm({ onSuccess }: StudentRegisterFormProps) {
@@ -38,24 +39,29 @@ function StudentRegisterForm({ onSuccess }: StudentRegisterFormProps) {
       instance: "",
       password: "",
       confirmPassword: "",
-    }
+    },
+    mode: "onBlur",
   })
 
   const instanceOptions = [
-    { label: "Instance 1", value: "instance_1" },
-    { label: "Instance 2", value: "instance_2" },
-    { label: "Instance 3", value: "instance_3" },
+    { label: "Instance 1", value: "Instance 1" },
+    { label: "Instance 2", value: "Instance 2" },
+    { label: "Instance 3", value: "Instance 3" },
   ]
 
   async function onSubmit(values: z.infer<typeof RegisterSchema>) {
     try {
-      console.log(values)
-      // Here, you would typically send the data to your server
-      // For example:
-      // await api.createStudent(values)
+      // Create a new student object
+      const newStudent: Student = {
+        name: values.name,
+        email: values.email,
+        phoneNumber: parseInt(values.phoneNumber),
+        instance: values.instance,
+      }
 
-      // If everything is successful, call onSuccess, show a success toast, close the modal, and reset the form
-      onSuccess?.()
+      // Call onSuccess with the new student data
+      onSuccess(newStudent)
+
       toast({
         title: "Success",
         description: "Student registered successfully",
@@ -74,6 +80,7 @@ function StudentRegisterForm({ onSuccess }: StudentRegisterFormProps) {
 
   return (
     <Modal
+      className="bg-white-background dark:bg-background"
       open={isOpen}
       onOpenChange={setIsOpen}
       trigger={
@@ -175,7 +182,7 @@ function StudentRegisterForm({ onSuccess }: StudentRegisterFormProps) {
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button className="bg-red text-white-background" type="submit">Save</Button>
         </form>
       </Form>
     </Modal>

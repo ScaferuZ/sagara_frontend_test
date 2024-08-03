@@ -1,279 +1,33 @@
 import { useEffect, useState } from 'react'
-import TableHeader from '@/components/elements/TableHeader'
 import { columns, Student } from './columns'
 import { DataTable } from './data-table'
-import LoadingLayout from '@/components/layouts/LoadingLayout'
-
-async function getStudents(): Promise<Student[]> {
-
-  return [
-    {
-      id: 1,
-      name: 'Aohn Doe',
-      email: "aohn@gmail.com",
-      phoneNumber: 123456789,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-01'),
-    },
-    {
-      id: 2,
-      name: 'Bohn Smith',
-      email: "bohn@gmail.com",
-      phoneNumber: 234567890,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-02'),
-    },
-    {
-      id: 3,
-      name: 'Cane Johnson',
-      email: "cane@gmail.com",
-      phoneNumber: 345678901,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-03'),
-    },
-    {
-      id: 4,
-      name: 'Diana Brown',
-      email: "diana@gmail.com",
-      phoneNumber: 456789012,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-04'),
-    },
-    {
-      id: 5,
-      name: 'Ethan Davis',
-      email: "ethan@gmail.com",
-      phoneNumber: 567890123,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-05'),
-    },
-    {
-      id: 6,
-      name: 'Fiona Wilson',
-      email: "fiona@gmail.com",
-      phoneNumber: 678901234,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-06'),
-    },
-    {
-      id: 7,
-      name: 'George Taylor',
-      email: "george@gmail.com",
-      phoneNumber: 789012345,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-07'),
-    },
-    {
-      id: 8,
-      name: 'Hannah Clark',
-      email: "hannah@gmail.com",
-      phoneNumber: 890123456,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-08'),
-    },
-    {
-      id: 9,
-      name: 'Ian Lewis',
-      email: "ian@gmail.com",
-      phoneNumber: 901234567,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-09'),
-    },
-    {
-      id: 10,
-      name: 'Julia Lee',
-      email: "julia@gmail.com",
-      phoneNumber: 123123123,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-10'),
-    },
-    {
-      id: 11,
-      name: 'Kevin Harris',
-      email: "kevin@gmail.com",
-      phoneNumber: 234234234,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-11'),
-    },
-    {
-      id: 12,
-      name: 'Laura Martin',
-      email: "laura@gmail.com",
-      phoneNumber: 345345345,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-12'),
-    },
-    {
-      id: 13,
-      name: 'Michael Thompson',
-      email: "michael@gmail.com",
-      phoneNumber: 456456456,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-13'),
-    },
-    {
-      id: 14,
-      name: 'Nancy White',
-      email: "nancy@gmail.com",
-      phoneNumber: 567567567,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-14'),
-    },
-    {
-      id: 15,
-      name: 'Oliver Garcia',
-      email: "oliver@gmail.com",
-      phoneNumber: 678678678,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-15'),
-    },
-    {
-      id: 16,
-      name: 'Patricia Martinez',
-      email: "patricia@gmail.com",
-      phoneNumber: 789789789,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-16'),
-    },
-    {
-      id: 17,
-      name: 'Quentin Rodriguez',
-      email: "quentin@gmail.com",
-      phoneNumber: 890890890,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-17'),
-    },
-    {
-      id: 18,
-      name: 'Rachel Lopez',
-      email: "rachel@gmail.com",
-      phoneNumber: 901901901,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-18'),
-    },
-    {
-      id: 19,
-      name: 'Samuel Gonzalez',
-      email: "samuel@gmail.com",
-      phoneNumber: 123321123,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-19'),
-    },
-    {
-      id: 20,
-      name: 'Tina Perez',
-      email: "tina@gmail.com",
-      phoneNumber: 234432234,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-20'),
-    },
-    {
-      id: 21,
-      name: 'Ulysses Turner',
-      email: "ulysses@gmail.com",
-      phoneNumber: 345543345,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-21'),
-    },
-    {
-      id: 22,
-      name: 'Violet Parker',
-      email: "violet@gmail.com",
-      phoneNumber: 456654456,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-22'),
-    },
-    {
-      id: 23,
-      name: 'William Collins',
-      email: "william@gmail.com",
-      phoneNumber: 567765567,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-23'),
-    },
-    {
-      id: 24,
-      name: 'Xena Edwards',
-      email: "xena@gmail.com",
-      phoneNumber: 678876678,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-24'),
-    },
-    {
-      id: 25,
-      name: 'Yannick Stewart',
-      email: "yannick@gmail.com",
-      phoneNumber: 789987789,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-25'),
-    },
-    {
-      id: 26,
-      name: 'Zoe Sanchez',
-      email: "zoe@gmail.com",
-      phoneNumber: 890098890,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-26'),
-    },
-    {
-      id: 27,
-      name: 'Adam Murphy',
-      email: "adam@gmail.com",
-      phoneNumber: 901109901,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-27'),
-    },
-    {
-      id: 28,
-      name: 'Bella Rogers',
-      email: "bella@gmail.com",
-      phoneNumber: 112211221,
-      instance: 'Instance 1',
-      createdAt: new Date('2024-01-28'),
-    },
-    {
-      id: 29,
-      name: 'Charles Cook',
-      email: "charles@gmail.com",
-      phoneNumber: 223322332,
-      instance: 'Instance 2',
-      createdAt: new Date('2024-01-29'),
-    },
-    {
-      id: 30,
-      name: 'Daisy Morgan',
-      email: "daisy@gmail.com",
-      phoneNumber: 334433443,
-      instance: 'Instance 3',
-      createdAt: new Date('2024-01-30'),
-    },
-  ];
-}
+import { students } from './constant'
+import DataLoading from '@/components/elements/DataLoading'
 
 function StudentsContent() {
   const [data, setData] = useState<Student[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    getStudents()
-      .then(students => {
-        setData(students)
-        setIsLoading(false)
-      })
-      .catch(error => {
-        console.error("Failed to fetch students:", error)
-        setIsLoading(false)
-      })
+    setTimeout(() => {
+      setData(students)
+      setIsLoading(false)
+    }, 1000)
   }, [])
 
   if (isLoading) {
-    return <LoadingLayout />
+    return <DataLoading />
+  }
+
+
+  const handleAddStudent = (newStudent: Student) => {
+    setData(prevData => [...prevData, { ...newStudent, id: prevData.length + 1, createdAt: new Date() }])
   }
 
   return (
     <>
       <h1 className='text-2xl font-bold text-left mb-6'>Data Student</h1>
-      <DataTable columns={columns} data={data} />
+      <DataTable columns={columns} data={data} onAddStudent={handleAddStudent} />
     </>
   )
 }

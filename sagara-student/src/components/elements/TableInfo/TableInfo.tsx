@@ -16,13 +16,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { AdjustmentsHorizontalIcon, CogIcon } from "@heroicons/react/24/outline";
 import StudentRegisterForm from '@/components/forms/StudentRegisterForm/StudentRegisterForm';
+import { Student } from '@/pages/Students/columns';
 
 interface TableInfoProps {
   searchInput?: React.ReactNode
   dropdownMenu?: React.ReactNode
+  onAddStudent: (newStudent: Student) => void
 }
 
-const TableInfo: React.FC<TableInfoProps> = ({ searchInput, dropdownMenu }) => {
+const TableInfo: React.FC<TableInfoProps> = ({ searchInput, dropdownMenu, onAddStudent }) => {
   const [filterValue, setFilterValue] = useState('');
   const [selectedColumns, setSelectedColumns] = useState({
     fullName: false,
@@ -65,7 +67,7 @@ const TableInfo: React.FC<TableInfoProps> = ({ searchInput, dropdownMenu }) => {
         </DropdownMenu>
 
         {/* <AddUserButton /> */}
-        <StudentRegisterForm />
+        <StudentRegisterForm onSuccess={onAddStudent} />
       </div>
 
       <div className="flex items-center space-x-2">
