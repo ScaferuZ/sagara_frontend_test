@@ -14,17 +14,6 @@ export type Student = {
   createdAt?: Date
 }
 
-// These functions should be defined in your component or passed as props
-const handleEdit = (student: Student) => {
-  console.log("Edit student:", student)
-  // Implement your edit logic here
-}
-
-const handleDelete = (id: number) => {
-  console.log("Delete student with id:", id)
-  // Implement your delete logic here
-}
-
 const createSortableHeader = (label: string) => {
   return ({ column }: { column: any }) => (
     <Button
@@ -38,7 +27,7 @@ const createSortableHeader = (label: string) => {
   )
 }
 
-export const columns = (handleDelete: (id: number) => void): ColumnDef<Student>[] => [
+export const columns = (handleEdit: (student: Student) => void, handleDelete: (id: number) => void): ColumnDef<Student>[] => [
   {
     accessorKey: "name",
     header: createSortableHeader("Name"),
@@ -83,7 +72,7 @@ export const columns = (handleDelete: (id: number) => void): ColumnDef<Student>[
           <Button variant="ghost" size="icon" onClick={() => handleEdit(student)}>
             <PencilIcon className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon" onClick={() => handleDelete(student.id)}>
+          <Button variant="ghost" size="icon" onClick={() => handleDelete(student.id!)}>
             <TrashIcon className="h-4 w-4" />
           </Button>
         </div>

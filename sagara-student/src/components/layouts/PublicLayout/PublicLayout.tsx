@@ -47,7 +47,7 @@ const CommonLayout = () => {
             <Sheet>
               <SheetTrigger asChild>
                 <Button variant="outline" size="icon" className="lg:hidden">
-                  <Squares2X2Icon className="h-5 w-5" />
+                  <Squares2X2Icon className="h-5 w-5 text-white-background dark:bg-background" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-64 p-0">
