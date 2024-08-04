@@ -66,7 +66,9 @@ export function StudentEditForm({ student, onSuccess, open, onOpenChange }: Stud
   }
 
   return (
-    <Modal open={open} onOpenChange={onOpenChange} title="Edit Student">
+    <Modal
+      className="bg-white-background dark:bg-background"
+      open={open} onOpenChange={onOpenChange} title="Edit Student">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
