@@ -1,4 +1,4 @@
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import SagaraLogo from "@/assets/images/sagara-tech.png";
 import {
   Squares2X2Icon,
@@ -25,7 +25,6 @@ const sidebarLinks = [
 ];
 
 const CommonLayout = () => {
-  const location = useLocation();
   return (
     <div className="flex h-screen w-full bg-background">
       {/* Sidebar for larger screens */}
