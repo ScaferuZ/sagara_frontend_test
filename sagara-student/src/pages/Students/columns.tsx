@@ -38,7 +38,7 @@ const createSortableHeader = (label: string) => {
   )
 }
 
-export const columns: ColumnDef<Student>[] = [
+export const columns = (handleDelete: (id: number) => void): ColumnDef<Student>[] => [
   {
     accessorKey: "name",
     header: createSortableHeader("Name"),
